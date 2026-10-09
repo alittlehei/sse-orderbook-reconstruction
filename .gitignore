@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# macOS archive metadata
+__MACOSX/
+.DS_Store
+
+# Raw licensed market data (one file also exceeds GitHub's 100 MB limit)
+sse50_20260923/
+
+# Parameter-search scratch outputs
+strategy_grid/
+
+# Temporary reconstruction staging files
+*.staging.csv
+

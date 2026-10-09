@@ -1,0 +1,15 @@
+﻿Metric,Value
+InitialCapital,1000000
+InitialCash,655098.0
+InitialStockValue,344902.0
+TradeCount,64
+BuyCount,47
+SellCount,17
+TotalFees,359.47581
+FinalCash,461987.52419000026
+FinalStockValue,535971.5
+FinalNAV,997959.0241900003
+StrategyReturn,-0.0020409758099997344
+BenchmarkNAV,998145.0
+BenchmarkReturn,-0.001855000000000051
+ExcessReturn,-0.0001859758099997416

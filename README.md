@@ -82,11 +82,12 @@
 
 ## 多因子实验
 
-项目进一步比较了一档、五档、十档失衡，微价格、短动量、盘口变化、价差和流动性因子，并采用训练、验证、测试时间切分。
+项目进一步比较了一档、五档、十档失衡，微价格、短动量、盘口变化、价差和流动性因子。评估使用按股票分组的五折交叉验证，每只测试股票都保留完整上午和下午，不再用时段划分训练集与测试集。
 
-- 预测稳定性最佳：30 秒全因子模型，验证 IC 为 0.1488，测试 IC 为 0.1797。
-- 简洁且信号幅度较好：180 秒的 `微价格 + 五档失衡 + 短动量`，验证和测试头尾组毛收益差分别为 3.55 bp 和 3.18 bp。
-- 上述毛收益仍不足以稳定覆盖主动成交的价差和费用。
+- 30、60、180、300 秒四个周期均选择 `微价格 + 五档失衡 + 短动量`。
+- 60 秒全时段折外横截面 IC 为 0.1268，开盘、上午、午后和尾盘 IC 均为正。
+- 时段间强度存在明显差异：开盘较弱，午后和尾盘较强。
+- 头尾组毛收益差约 2 bp，仍不足以稳定覆盖主动成交的价差和费用。
 
 完整方法和结果见 [FACTOR_RESEARCH.md](FACTOR_RESEARCH.md)。
 
@@ -119,7 +120,7 @@ python orderbook_strategy.py --threshold 0.70 --cooldown-seconds 600 --max-trade
 ├── requirements.txt
 ├── reconstruct_orderbook.py
 ├── orderbook_strategy.py
-├── factor_research.py
+├── grouped_factor_research.py
 ├── FACTOR_RESEARCH.md
 ├── reconstructed_orderbook_20260923.parquet
 ├── reconstruction_validation_20260923.csv

@@ -80,6 +80,16 @@
 
 这说明策略具备可执行的账户、费用和成交约束，但尚未证明存在稳定收益。只有一个交易日，无法完成训练集、验证集和样本外检验。
 
+## 多因子实验
+
+项目进一步比较了一档、五档、十档失衡，微价格、短动量、盘口变化、价差和流动性因子，并采用训练、验证、测试时间切分。
+
+- 预测稳定性最佳：30 秒全因子模型，验证 IC 为 0.1488，测试 IC 为 0.1797。
+- 简洁且信号幅度较好：180 秒的 `微价格 + 五档失衡 + 短动量`，验证和测试头尾组毛收益差分别为 3.55 bp 和 3.18 bp。
+- 上述毛收益仍不足以稳定覆盖主动成交的价差和费用。
+
+完整方法和结果见 [FACTOR_RESEARCH.md](FACTOR_RESEARCH.md)。
+
 ## 环境与运行
 
 要求 Python 3.10 或以上版本。
@@ -109,6 +119,8 @@ python orderbook_strategy.py --threshold 0.70 --cooldown-seconds 600 --max-trade
 ├── requirements.txt
 ├── reconstruct_orderbook.py
 ├── orderbook_strategy.py
+├── factor_research.py
+├── FACTOR_RESEARCH.md
 ├── reconstructed_orderbook_20260923.parquet
 ├── reconstruction_validation_20260923.csv
 └── strategy_output/
@@ -128,4 +140,3 @@ python orderbook_strategy.py --threshold 0.70 --cooldown-seconds 600 --max-trade
 | `snp_20260923.parquet` | 26,806,291 | `AC69D2F1810A24A15CB4C90183A6D3EA7EE31ECCBCD98C58ED1F7F7F7C34AA87` |
 
 发布前请确认课程和数据供应商允许公开衍生数据；如果不允许，应同时从仓库排除重建后的 Parquet 和策略信号文件。
-

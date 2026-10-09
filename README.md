@@ -82,14 +82,19 @@
 
 ## 多因子实验
 
-项目进一步比较了一档、五档、十档失衡，微价格、短动量、盘口变化、价差和流动性因子。评估使用按股票分组的五折交叉验证，每只测试股票都保留完整上午和下午，不再用时段划分训练集与测试集。
+项目使用全部股票和全部交易时段，穷举了 162 个最多四因子的组合。由于只有一个交易日，不人为划分训练、验证或测试集，所有结论均明确标记为 `2026-09-23 当日样本内结果`。
 
-- 30、60、180、300 秒四个周期均选择 `微价格 + 五档失衡 + 短动量`。
-- 60 秒全时段折外横截面 IC 为 0.1268，开盘、上午、午后和尾盘 IC 均为正。
-- 时段间强度存在明显差异：开盘较弱，午后和尾盘较强。
-- 头尾组毛收益差约 2 bp，仍不足以稳定覆盖主动成交的价差和费用。
+- 30 秒最优：一档失衡 + 十档失衡 + 盘口变化。
+- 60 秒最优：十档失衡 + 盘口变化 + 价差 + 流动性。
+- 分别报告逐股票、开盘/上午/午后/尾盘、30分钟时间块表现。
+- 对胜出组合按股票和时间块进行 2,000 次 bootstrap。
+- 获得更多交易日后，才按完整交易日划分训练、验证和测试集。
 
 完整方法和结果见 [FACTOR_RESEARCH.md](FACTOR_RESEARCH.md)。
+
+## 跳空动量因子挖掘
+
+新增一轮 15 个盘中跳空/跳变动量因子实验。单日数据不含昨收，故以开盘后位移、午间重开和盘中跳变代替隔夜跳空。第一轮结果显示纯价格跳变后以短期回补为主，只有微价格压力确认后的跳变呈微弱正 IC。方法、排名和后续方向见 [factor_rounds/README.md](factor_rounds/README.md)。
 
 ## 环境与运行
 
@@ -104,6 +109,7 @@ python -m pip install -r requirements.txt
 ```powershell
 python reconstruct_orderbook.py
 python orderbook_strategy.py
+python jump_momentum_research.py
 ```
 
 常用策略参数：
@@ -120,7 +126,7 @@ python orderbook_strategy.py --threshold 0.70 --cooldown-seconds 600 --max-trade
 ├── requirements.txt
 ├── reconstruct_orderbook.py
 ├── orderbook_strategy.py
-├── grouped_factor_research.py
+├── daily_factor_research.py
 ├── FACTOR_RESEARCH.md
 ├── reconstructed_orderbook_20260923.parquet
 ├── reconstruction_validation_20260923.csv

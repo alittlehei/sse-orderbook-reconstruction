@@ -1,0 +1,18 @@
+﻿Metric,Value
+SelectionScope,2026-09-23 in-sample only
+HorizonSeconds,30
+Winner,imb1+imb10+book_change
+CombinationsTested,162
+Coefficient_Intercept,-9.754167047596474e-06
+Coefficient_imb1,5.212866455969836e-05
+Coefficient_imb10,6.466596120563714e-06
+Coefficient_book_change,9.912900260284413e-06
+MeanStockIC,0.15860178918058335
+StockBootstrapCI95Low,0.13402972855677667
+StockBootstrapCI95High,0.18215946739417394
+PositiveStockRatio,1.0
+MeanTimeBlockIC,0.14131475938442545
+TimeBlockBootstrapCI95Low,0.11426361939533727
+TimeBlockBootstrapCI95High,0.1665435328083077
+PositiveTimeBlockRatio,1.0
+MinRegimeIC,0.0742485348671281

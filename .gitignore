@@ -17,3 +17,5 @@ strategy_grid/
 # Temporary reconstruction staging files
 *.staging.csv
 
+# Superseded default-horizon factor output
+factor_research_20260923.csv
